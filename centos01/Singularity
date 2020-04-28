@@ -6,7 +6,9 @@ MAINTAINER singular55
 
 
 %post
-	yum --enablerepo=extras install epel-release
+	#yum --enablerepo=extras install -y epel-release
+	yum -y install epel-release	
+	yum repolist
 	#yum update --fix-missing
 	yum install -y git meld
 	#yum clean
