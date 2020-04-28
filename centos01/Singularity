@@ -15,3 +15,5 @@ MAINTAINER singular55
 
 %runscript
 	exec /bin/echo "Hi there"
+	exec /usr/bin/meld
+
