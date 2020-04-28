@@ -6,9 +6,9 @@ MAINTAINER singular55
 
 
 %post
-	yum update --fix-missing
+	#yum update --fix-missing
 	yum install -y git meld
-	yum clean
+	#yum clean
 
 %runscript
 	exec /bin/echo "Hi there"
