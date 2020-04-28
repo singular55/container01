@@ -1,0 +1,6 @@
+Bootstrap:docker
+From:centos:7.5.1804
+
+%labels
+MAINTAINER singular55
+
