@@ -4,6 +4,19 @@ From:centos:7.5.1804
 %labels
 MAINTAINER singular55
 
+%environment
+	LANG=C.UTF-8
+	LC_ALL=C.UTF-8
+	PATH=/bin_override:$PATH
+	LIBRARY_PATH=/lib_override:$LIBRARY_PATH
+	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
+	WORKDIR=/work
+	export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
+
+%setup
+	mkdir -p $SINGULARITY_ROOTFS/lib_override
+	mkdir -p $SINGULARITY_ROOTFS/bin_override
+	mkdir -p $SINGULARITY_ROOTFS/work
 
 %post
 	#yum --enablerepo=extras install -y epel-release
