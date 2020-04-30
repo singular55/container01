@@ -35,3 +35,6 @@ MAINTAINER singular55
 	exec /bin/echo "Hi there"
 	#exec /usr/bin/meld
 
+%apprun meld
+	exec meld
+
