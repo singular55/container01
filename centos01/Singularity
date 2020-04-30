@@ -28,7 +28,10 @@ MAINTAINER singular55
 	yum install -y git meld
 	#yum clean
 
+	#fix some X / DBus issues?
+	dbus-uuidgen > /var/lib/dbus/machine-id
+
 %runscript
 	exec /bin/echo "Hi there"
-	exec /usr/bin/meld
+	#exec /usr/bin/meld
 
