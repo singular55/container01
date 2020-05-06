@@ -36,9 +36,12 @@ MAINTAINER singular55
 	tar -xf /tmp/eclipse.tar.gz -C /opt
 	rm /tmp/eclipse.tar.gz
 
+	cp /opt/eclipse.ini /opt/eclipse/
+
 
 %files
 	eclipse.ini /opt/eclipse/
+	eclipse.ini /opt/
 
 %runscript
 	exec /bin/echo "Hi there"
