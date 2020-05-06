@@ -37,6 +37,8 @@ MAINTAINER singular55
 	rm /tmp/eclipse.tar.gz
 
 
+%files
+	eclipse.ini /opt/eclipse/
 
 %runscript
 	exec /bin/echo "Hi there"
