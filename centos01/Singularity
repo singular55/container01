@@ -65,5 +65,5 @@ MAINTAINER singular55
 	exec meld
 
 %apprun eclipse
-	exec /usr/local/bin/eclipse
+	exec /bin_override/eclipse/eclipse
 
