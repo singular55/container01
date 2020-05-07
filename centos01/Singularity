@@ -20,6 +20,10 @@ MAINTAINER singular55
 	mkdir -p $SINGULARITY_ROOTFS/bin_override
 	mkdir -p $SINGULARITY_ROOTFS/work
 
+	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
+	tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
+	rm /tmp/eclipse.tar.gz
+
 %post
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
@@ -32,14 +36,19 @@ MAINTAINER singular55
 	dbus-uuidgen > /var/lib/dbus/machine-id
 
 	#eclipse jee
-	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
+
+	##wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
+	
 	#tar -xf /tmp/eclipse.tar.gz -C /opt
 	#tar -xf /tmp/eclipse.tar.gz -C ${SINGULARITY_ROOTFS}
-	tar -xf /tmp/eclipse.tar.gz -C ~
-	rm /tmp/eclipse.tar.gz
+	# ~ is /root for singularity hub
+	
+	##tar -xf /tmp/eclipse.tar.gz -C ~
+	##rm /tmp/eclipse.tar.gz
 
 	#moved from /opt/eclipse
-	cp eclipse.ini ~/eclipse/
+	
+	##cp eclipse.ini ~/eclipse/
 
 
 %files
