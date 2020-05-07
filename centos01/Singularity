@@ -24,6 +24,8 @@ MAINTAINER singular55
 	tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
 	rm /tmp/eclipse.tar.gz
 
+	cp eclipse.ini $SINGULARITY_ROOTFS/bin_override/eclipse/
+
 %post
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
