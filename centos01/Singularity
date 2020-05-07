@@ -42,8 +42,8 @@ MAINTAINER singular55
 
 
 %files
-	eclipse.ini /opt/eclipse/
-	eclipse.ini
+	#eclipse.ini /opt/eclipse/
+	eclipse.ini eclipse.ini
 
 %runscript
 	exec /bin/echo "Hi there"
