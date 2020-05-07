@@ -33,10 +33,12 @@ MAINTAINER singular55
 
 	#eclipse jee
 	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
-	tar -xf /tmp/eclipse.tar.gz -C /opt
+	#tar -xf /tmp/eclipse.tar.gz -C /opt
+	tar -xf /tmp/eclipse.tar.gz 
 	rm /tmp/eclipse.tar.gz
 
-	cp eclipse.ini /opt/eclipse/
+	#moved from /opt/eclipse
+	cp eclipse.ini eclipse/
 
 
 %files
