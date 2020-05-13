@@ -58,12 +58,12 @@ MAINTAINER singular55
 	eclipse.ini eclipse.ini
 
 %runscript
-	exec /bin/echo "Hi there"
+	exec /bin/echo "Hi there, container runscript!"
 	#exec /usr/bin/meld
 
 %apprun meld
-	exec meld
+	exec meld "$@"
 
 %apprun eclipse
-	exec /bin_override/eclipse/eclipse
+	exec /bin_override/eclipse/eclipse "$@"
 
