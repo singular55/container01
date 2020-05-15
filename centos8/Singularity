@@ -48,6 +48,10 @@ MAINTAINER singular55
 	yum -y install epel-release	
 	yum repolist
 	#yum update --fix-missing
+
+	# add yum GUI?
+	yum groupinstall "Server with GUI"
+
 	yum install -y git meld wget
 	#yum clean
 
