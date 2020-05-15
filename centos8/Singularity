@@ -1,7 +1,13 @@
 Bootstrap: yum
 OSVersion: 8
+# old example
 # MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/x86_64/
-MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/BaseOS/os/x86_64/
+
+# newer mirror
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/BaseOS/x86_64/os/
+# url
+#http://mirror.centos.org/centos-8/8/BaseOS/x86_64/os/repodata/
+
 Include: yum
 
 # Bootstrap:docker
