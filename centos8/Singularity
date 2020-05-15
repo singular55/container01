@@ -1,16 +1,23 @@
-Bootstrap: yum
-OSVersion: 8
+Bootstrap:docker
+From:centos:centos8
+
+
+###Bootstrap: yum
+###OSVersion: 8
+
 # old example
 # MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/x86_64/
 
 # newer mirror
-MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/BaseOS/x86_64/os/
+###MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/BaseOS/x86_64/os/
 # url
 #http://mirror.centos.org/centos-8/8/BaseOS/x86_64/os/repodata/
 #http://mirror.centos.org/centos-8/8/AppStream/x86_64/os/
-MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/AppStream/x86_64/os/
 
-Include: yum
+# Two mirrors not allowed
+#MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/AppStream/x86_64/os/
+
+###Include: yum
 
 # Bootstrap:docker
 # From:centos:7.5.1804
