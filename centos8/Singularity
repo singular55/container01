@@ -7,6 +7,8 @@ OSVersion: 8
 MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/BaseOS/x86_64/os/
 # url
 #http://mirror.centos.org/centos-8/8/BaseOS/x86_64/os/repodata/
+#http://mirror.centos.org/centos-8/8/AppStream/x86_64/os/
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/AppStream/x86_64/os/
 
 Include: yum
 
@@ -50,6 +52,7 @@ MAINTAINER singular55
 	#yum update --fix-missing
 
 	# add yum GUI?
+	yum group list
 	yum groupinstall "Server with GUI"
 
 	yum install -y git meld wget
