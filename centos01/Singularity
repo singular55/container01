@@ -80,11 +80,14 @@ MAINTAINER singular55
 	eclipse.ini eclipse.ini
 
 %runscript
-	exec /bin/echo "Hi there, container runscript!"
+	#exec /bin/echo "Hi there, container runscript!"
 	#exec /usr/bin/meld
 
 	mkdir -p ${WRITEABLE}
 	touch ${WRITEABLE}/HiThere
+
+	/bin/echo "Config files should go in ${WRITEABLE}."
+
 
 %apprun meld
 	exec meld "$@"
