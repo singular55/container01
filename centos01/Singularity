@@ -1,5 +1,5 @@
 Bootstrap:docker
-From:centos:7.5.1804
+From:centos:7
 
 %labels
 MAINTAINER singular55
@@ -31,7 +31,7 @@ MAINTAINER singular55
 	yum -y install epel-release	
 	yum repolist
 	#yum update --fix-missing
-	yum install -y git meld wget
+	yum install -y git meld wget kdiff3
 	#yum clean
 
 	#fix some X / DBus issues?
@@ -66,4 +66,7 @@ MAINTAINER singular55
 
 %apprun eclipse
 	exec /bin_override/eclipse/eclipse "$@"
+
+%apprun kdiff3
+	exec kdiff3 "$@"
 
