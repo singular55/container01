@@ -46,6 +46,11 @@ MAINTAINER singular55
 	tar -xf /tmp/mysql.tar.xz -C $SINGULARITY_ROOTFS/bin_override
 	rm /tmp/mysql.tar.xz
 
+	## lite mysql
+	wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-x86_64-minimal.tar.xz -O /tmp/mysql.tar.xz
+	tar -xf /tmp/mysql.tar.xz -C $SINGULARITY_ROOTFS/bin_override
+	rm /tmp/mysql.tar.xz
+
 
 
 %post
