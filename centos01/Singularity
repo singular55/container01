@@ -59,6 +59,11 @@ MAINTAINER singular55
 	yum repolist
 	#yum update --fix-missing
 	yum install -y git meld wget kdiff3
+
+	# mysql uses libnuma
+	yum install -y numactl-libs
+
+
 	#yum clean
 
 	#fix some X / DBus issues?
