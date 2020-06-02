@@ -37,6 +37,9 @@ MAINTAINER singular55
 	# https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz
 	wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz -O /tmp/tomcat.tar.gz
 	tar -xf /tmp/tomcat.tar.gz -C $SINGULARITY_ROOTFS/bin_override
+	# Apache installed as u:root g:root with no group or other permissions.  For us to run apache from the 
+	# container we need other permissions, it looks like.
+	chmod -r o+rX $SINGULARITY_ROOTFS/bin_override/apache-tomcat-8.5.47
 	rm /tmp/tomcat.tar.gz
 
 	## mysql
