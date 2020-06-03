@@ -21,11 +21,19 @@ MAINTAINER singular55
 	mkdir -p $SINGULARITY_ROOTFS/bin_override
 	#mkdir -p $SINGULARITY_ROOTFS/work
 
+	# eclipse
 	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
 	tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
 	rm /tmp/eclipse.tar.gz
 
 	cp eclipse.ini $SINGULARITY_ROOTFS/bin_override/eclipse/
+
+	## Eclipse for Scientific Computing
+	# https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-03/R/eclipse-parallel-2020-03-R-linux-gtk-x86_64.tar.gz
+	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2020-03/R/eclipse-parallel-2020-03-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
+	tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
+	rm /tmp/eclipse.tar.gz
+
 
 	## agraph
 	# http://franz.com/ftp/pri/acl/ag/ag6.4.0/linuxamd64.64/agraph-6.4.0-linuxamd64.64.tar.gz
