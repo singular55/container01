@@ -30,10 +30,11 @@ MAINTAINER singular55
 
 	## Eclipse for Scientific Computing
 	# https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-03/R/eclipse-parallel-2020-03-R-linux-gtk-x86_64.tar.gz
-	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2020-03/R/eclipse-parallel-2020-03-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
-	tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
-	rm /tmp/eclipse.tar.gz
-
+	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2020-03/R/eclipse-parallel-2020-03-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse-parallel.tar.gz
+	tar -xf /tmp/eclipse-parallel.tar.gz -C $SINGULARITY_ROOTFS/bin_override
+	rm /tmp/eclipse-parallel.tar.gz
+	# TODO - ini file
+	
 
 	## agraph
 	# http://franz.com/ftp/pri/acl/ag/ag6.4.0/linuxamd64.64/agraph-6.4.0-linuxamd64.64.tar.gz
@@ -50,14 +51,14 @@ MAINTAINER singular55
 	chmod -R o+rx $SINGULARITY_ROOTFS/bin_override/apache-tomcat-8.5.47
 	rm /tmp/tomcat.tar.gz
 
-	## mysql
+	## mysql - full install
 	# https://dev.mysql.com/downloads/file/?id=495278 - login
 	# https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-glibc2.12-x86_64.tar.xz
 	wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-glibc2.12-x86_64.tar.xz -O /tmp/mysql.tar.xz
 	tar -xf /tmp/mysql.tar.xz -C $SINGULARITY_ROOTFS/bin_override
 	rm /tmp/mysql.tar.xz
 
-	## lite mysql
+	## lite/minimal mysql
 	wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-x86_64-minimal.tar.xz -O /tmp/mysql.tar.xz
 	tar -xf /tmp/mysql.tar.xz -C $SINGULARITY_ROOTFS/bin_override
 	rm /tmp/mysql.tar.xz
