@@ -28,7 +28,7 @@ MAINTAINER singular55
 	rm /tmp/eclipse-parallel.tar.gz
 	# TODO - ini file
 	
-	cp eclipse-parallel.ini $SINGULARITY_ROOTFS/bin_override/eclipse/
+	cp eclipse-parallel.ini $SINGULARITY_ROOTFS/bin_override/eclipse/eclipse.ini
 	mv $SINGULARITY_ROOTFS/bin_override/eclipse $SINGULARITY_ROOTFS/bin_override/eclipse-parallel
 
 	# eclipse
