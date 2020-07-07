@@ -73,7 +73,7 @@ MAINTAINER singular55
 	yum -y install epel-release	
 	yum repolist
 	#yum update --fix-missing
-	yum install -y git meld wget kdiff3
+	yum install -y git meld wget kdiff3 firefox
 
 	# mysql uses libnuma
 	yum install -y numactl-libs
@@ -117,6 +117,10 @@ MAINTAINER singular55
 
 %apprun meld
 	exec meld "$@"
+
+%apprun firefox
+	exec firefox "$@"
+
 
 %apprun eclipse
 	exec /bin_override/eclipse/eclipse "$@"
