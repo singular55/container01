@@ -43,7 +43,8 @@ MAINTAINER singular55
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
 	
-	yum install gpg2
+	# not a thing... error
+	#yum install gpg2
 	
 	#setup intel repos
 	yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
