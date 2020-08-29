@@ -35,20 +35,13 @@ MAINTAINER singular55
 
 
 %post
-	#intel gpg not working...
-	yum clean metadata
-	yum clean all
-	yum update
 	
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
 	
-	# not a thing... error
-	#yum install gpg2
-	
 	#setup intel repos
 	yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
-	rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+	#rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 	
 	yum repolist
 	#yum install -y wget python3 
