@@ -21,89 +21,41 @@ MAINTAINER singular55
 	mkdir -p $SINGULARITY_ROOTFS/bin_override
 	#mkdir -p $SINGULARITY_ROOTFS/work
 
-	## Eclipse for Scientific Computing
-	# https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-03/R/eclipse-parallel-2020-03-R-linux-gtk-x86_64.tar.gz
-	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2020-03/R/eclipse-parallel-2020-03-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse-parallel.tar.gz
-	tar -xf /tmp/eclipse-parallel.tar.gz -C $SINGULARITY_ROOTFS/bin_override
-	rm /tmp/eclipse-parallel.tar.gz
-	# TODO - ini file
-	
-	cp eclipse-parallel.ini $SINGULARITY_ROOTFS/bin_override/eclipse/eclipse.ini
-	mv $SINGULARITY_ROOTFS/bin_override/eclipse $SINGULARITY_ROOTFS/bin_override/eclipse-parallel
-
-	# eclipse
-	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
-	tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
-	rm /tmp/eclipse.tar.gz
-
-	cp eclipse.ini $SINGULARITY_ROOTFS/bin_override/eclipse/
 
 
-	## agraph
-	# http://franz.com/ftp/pri/acl/ag/ag6.4.0/linuxamd64.64/agraph-6.4.0-linuxamd64.64.tar.gz
-	wget http://franz.com/ftp/pri/acl/ag/ag6.4.0/linuxamd64.64/agraph-6.4.0-linuxamd64.64.tar.gz -O /tmp/agraph.tar.gz
-	tar -xf /tmp/agraph.tar.gz -C $SINGULARITY_ROOTFS/bin_override
-	rm /tmp/agraph.tar.gz
-
-	## tomcat
-	# https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz
-	wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz -O /tmp/tomcat.tar.gz
-	tar -xf /tmp/tomcat.tar.gz -C $SINGULARITY_ROOTFS/bin_override
-	# Apache installed as u:root g:root with no group or other permissions.  For us to run apache from the 
-	# container we need other permissions, it looks like.
-	chmod -R o+rx $SINGULARITY_ROOTFS/bin_override/apache-tomcat-8.5.47
-	rm /tmp/tomcat.tar.gz
 
 	## mysql - full install
 	# https://dev.mysql.com/downloads/file/?id=495278 - login
 	# https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-glibc2.12-x86_64.tar.xz
-	wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-glibc2.12-x86_64.tar.xz -O /tmp/mysql.tar.xz
-	tar -xf /tmp/mysql.tar.xz -C $SINGULARITY_ROOTFS/bin_override
-	rm /tmp/mysql.tar.xz
+	#wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-glibc2.12-x86_64.tar.xz -O /tmp/mysql.tar.xz
+	#tar -xf /tmp/mysql.tar.xz -C $SINGULARITY_ROOTFS/bin_override
+	#rm /tmp/mysql.tar.xz
 
-	## lite/minimal mysql
-	wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.20-linux-x86_64-minimal.tar.xz -O /tmp/mysql.tar.xz
-	tar -xf /tmp/mysql.tar.xz -C $SINGULARITY_ROOTFS/bin_override
-	rm /tmp/mysql.tar.xz
 
 
 
 %post
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
+	
+	#setup intel repos
+	yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
+	rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+	
 	yum repolist
-	#yum update --fix-missing
-	yum install -y git meld wget kdiff3 firefox
-
-	# mysql uses libnuma
-	yum install -y numactl-libs
+	#yum install -y wget python3 
+	yum install intelpython3 intel-mpi
 
 
-	#yum clean
 
 	#fix some X / DBus issues?
-	dbus-uuidgen > /var/lib/dbus/machine-id
+	#dbus-uuidgen > /var/lib/dbus/machine-id
 
-	#eclipse jee
-
-	##wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
-	
-	#tar -xf /tmp/eclipse.tar.gz -C /opt
-	#tar -xf /tmp/eclipse.tar.gz -C ${SINGULARITY_ROOTFS}
-	# ~ is /root for singularity hub
-	
-	##tar -xf /tmp/eclipse.tar.gz -C ~
-	##rm /tmp/eclipse.tar.gz
-
-	#moved from /opt/eclipse
-	
-	##cp eclipse.ini ~/eclipse/
 
 
 %files
-	#eclipse.ini /opt/eclipse/
-	eclipse.ini eclipse.ini
-	eclipse-parallel.ini eclipse-parallel.ini
+	#eclipse.ini eclipse.ini
+	#eclipse-parallel.ini eclipse-parallel.ini
 
 %runscript
 	#exec /bin/echo "Hi there, container runscript!"
@@ -115,18 +67,10 @@ MAINTAINER singular55
 	/bin/echo "Config files should go in ${WRITEABLE}."
 
 
-%apprun meld
-	exec meld "$@"
-
-%apprun firefox
-	exec firefox "$@"
+#%apprun meld
+	#exec meld "$@"
 
 
-%apprun eclipse
-	exec /bin_override/eclipse/eclipse "$@"
+#%apprun eclipse
+	#exec /bin_override/eclipse/eclipse "$@"
 
-%apprun kdiff3
-	exec kdiff3 "$@"
-
-%apprun eclipse-parallel
-	exec /bin_override/eclipse-parallel/eclipse "$@"
