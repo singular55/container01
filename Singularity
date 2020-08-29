@@ -43,7 +43,10 @@ MAINTAINER singular55
 	#yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
 	yum-config-manager --add-repo https://yum.repos.intel.com/intelpython/setup/intelpython.repo
 	
+	# key fails to authenticate repo?
 	#rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+	# new key
+	rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 	
 	yum repolist
 	#yum install -y wget python3 
