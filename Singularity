@@ -40,13 +40,16 @@ MAINTAINER singular55
 	yum -y install epel-release	
 	
 	#setup intel repos
-	#yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
-	yum-config-manager --add-repo https://yum.repos.intel.com/intelpython/setup/intelpython.repo
+	#https://software.intel.com/content/www/us/en/develop/articles/installing-intel-free-libs-and-python-yum-repo.html
+	# put check next page for new key?
+	yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
+	#yum-config-manager --setopt=gpgcheck=0 --add-repo https://yum.repos.intel.com/intelpython/setup/intelpython.repo
 	
 	# key fails to authenticate repo?
 	#rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 	# new key
-	rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
+	#https://software.intel.com/content/www/us/en/develop/articles/oneapi-repo-instructions.html
+	#rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 	
 	yum repolist
 	#yum install -y wget python3 
