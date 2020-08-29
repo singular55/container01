@@ -35,8 +35,15 @@ MAINTAINER singular55
 
 
 %post
+	#intel gpg not working...
+	yum clean metadata
+	yum clean all
+	yum update
+	
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
+	
+	yum install gpg2
 	
 	#setup intel repos
 	yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
