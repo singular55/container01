@@ -40,7 +40,9 @@ MAINTAINER singular55
 	yum -y install epel-release	
 	
 	#setup intel repos
-	yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
+	#yum-config-manager --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
+	yum-config-manager --add-repo https://yum.repos.intel.com/intelpython/setup/intelpython.repo
+	
 	#rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
 	
 	yum repolist
