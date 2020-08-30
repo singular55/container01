@@ -50,7 +50,7 @@ MAINTAINER singular55
 	#yum install intelpython3 intel-mpi
 
 
-	3wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+	#wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 	#sh Miniconda3-latest-Linux-x86_64.sh
 
 	#sh bashrc
