@@ -55,7 +55,8 @@ MAINTAINER singular55
 
 	#sh bashrc
 	
-	conda update conda
+	conda update -y conda
+	
 	conda config --add channels intel
 	conda create -n idp intelpython3_full python=3
 	
