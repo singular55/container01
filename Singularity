@@ -1,5 +1,5 @@
 Bootstrap:docker
-From:centos:7
+From:conda/miniconda3-centos7
 
 %labels
 MAINTAINER singular55
@@ -17,8 +17,8 @@ MAINTAINER singular55
 	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
 
 %setup
-	mkdir -p $SINGULARITY_ROOTFS/lib_override
-	mkdir -p $SINGULARITY_ROOTFS/bin_override
+	#mkdir -p $SINGULARITY_ROOTFS/lib_override
+	#mkdir -p $SINGULARITY_ROOTFS/bin_override
 	#mkdir -p $SINGULARITY_ROOTFS/work
 
 
@@ -35,28 +35,32 @@ MAINTAINER singular55
 
 
 %post
+	mkdir -p /lib_override
+	mkdir -p /bin_override
 	
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
 	
-	#setup intel repos
-	#https://software.intel.com/content/www/us/en/develop/articles/installing-intel-free-libs-and-python-yum-repo.html
-	# put check next page for new key?
-	yum-config-manager --setopt=gpgcheck=0  --add-repo https://yum.repos.intel.com/setup/intelproducts.repo
-	#yum-config-manager --setopt=gpgcheck=0 --add-repo https://yum.repos.intel.com/intelpython/setup/intelpython.repo
 	
-	# key fails to authenticate repo?
-	#rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
-	# new key
-	#https://software.intel.com/content/www/us/en/develop/articles/oneapi-repo-instructions.html
-	#rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 	
 	yum repolist
-	#yum install -y wget python3 
-	yum install intelpython3 intel-mpi
+	#yum install -y wget 
+	
+	# even with gpgcheck=0, still fails to install?
+	#yum install intelpython3 intel-mpi
 
 
+	3wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+	#sh Miniconda3-latest-Linux-x86_64.sh
 
+	#sh bashrc
+	
+	conda update conda
+	conda config --add channels intel
+	conda create -n idp intelpython3_full python=3
+	
+	conda -V
+	
 	#fix some X / DBus issues?
 	#dbus-uuidgen > /var/lib/dbus/machine-id
 
