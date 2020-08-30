@@ -59,7 +59,8 @@ MAINTAINER singular55
 	conda update -y -q conda
 	
 	conda config --add channels intel
-	conda create -y -n idp intelpython3_full python=3
+	#conda create -y -n idp intelpython3_full python=3
+	conda create -y -n idp intelpython3_core python=3
 	
 	conda -V
 	
