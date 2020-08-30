@@ -55,12 +55,21 @@ MAINTAINER singular55
 
 	#sh bashrc
 	
-	conda update -y conda
+	# no prompt, no progress bars (-q)
+	conda update -y -q conda
 	
 	conda config --add channels intel
 	conda create -n idp intelpython3_full python=3
 	
 	conda -V
+	
+	conda install -n idp -c franzinc agraph-python
+	conda install -n idp -c auto cpe
+	conda install -n idp -c anaconda keyring
+	conda install -n idp -c conda-forge plotly
+	conda install -n idp -c conda-forge pylint
+	conda install -n idp -c conda-forge rdflib
+	
 	
 	#fix some X / DBus issues?
 	#dbus-uuidgen > /var/lib/dbus/machine-id
