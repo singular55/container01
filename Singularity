@@ -65,6 +65,9 @@ MAINTAINER singular55
 	conda -V
 	
 	## setup conda / pip interop
+	echo $SHELL
+	conda init bash
+	source .bashrc
 	conda activate idp
 	conda config --set pip_interop_enabled True
 	#grab the one package we need from pip
