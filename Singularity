@@ -16,7 +16,7 @@ MAINTAINER singular55
 	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
 	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
 
-%setup
+#%setup
 	#mkdir -p $SINGULARITY_ROOTFS/lib_override
 	#mkdir -p $SINGULARITY_ROOTFS/bin_override
 	#mkdir -p $SINGULARITY_ROOTFS/work
@@ -82,21 +82,34 @@ MAINTAINER singular55
 	conda install -y -n idp -c conda-forge plotly
 	conda install -y -n idp -c conda-forge pylint
 	conda install -y -n idp -c conda-forge rdflib
+
+
+	# says bash - but not interactive?
+	#echo $SHELL
+	## Doesn't work on HPC
+	#conda init bash
+	#source .bashrc
+	. /usr/local/etc/profile.d/conda.sh
+	conda activate idp
+	#conda config --set pip_interop_enabled True
+	#grab the one package we need from pip
+	pip install cpe
+	conda deactivate
 	
 	
 	#fix some X / DBus issues?
 	#dbus-uuidgen > /var/lib/dbus/machine-id
 
 
-%setup
-	echo $SHELL
-	conda init bash
-	source .bashrc
-	conda activate idp
-	#conda config --set pip_interop_enabled True
-	#grab the one package we need from pip
-	pip install cpe
-	conda deactivate
+#%setup
+#	echo $SHELL
+#	conda init bash
+#	source .bashrc
+#	conda activate idp
+#	#conda config --set pip_interop_enabled True
+#	#grab the one package we need from pip
+#	pip install cpe
+#	conda deactivate
 
 
 %files
