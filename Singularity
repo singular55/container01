@@ -63,16 +63,17 @@ MAINTAINER singular55
 	conda create -y -n idp intelpython3_core python=3
 	
 	conda -V
+
+	conda config --set pip_interop_enabled True
 	
 	## setup conda / pip interop
-	echo $SHELL
-	conda init bash
-	source .bashrc
-	conda activate idp
-	conda config --set pip_interop_enabled True
-	#grab the one package we need from pip
-	pip install cpe
-	conda deactivate
+	#echo $SHELL
+	#conda init bash
+	#source .bashrc
+	#conda activate idp
+	##grab the one package we need from pip
+	#pip install cpe
+	#conda deactivate
 	
 	conda install -y -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
@@ -86,6 +87,16 @@ MAINTAINER singular55
 	#fix some X / DBus issues?
 	#dbus-uuidgen > /var/lib/dbus/machine-id
 
+
+%setup
+	echo $SHELL
+	conda init bash
+	source .bashrc
+	conda activate idp
+	#conda config --set pip_interop_enabled True
+	#grab the one package we need from pip
+	pip install cpe
+	conda deactivate
 
 
 %files
