@@ -64,6 +64,13 @@ MAINTAINER singular55
 	
 	conda -V
 	
+	## setup conda / pip interop
+	conda activate idp
+	conda config --set pip_interop_enabled True
+	#grab the one package we need from pip
+	pip install cpe
+	conda deactivate
+	
 	conda install -y -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
 	#conda install -y -n idp -c auto cpe
