@@ -65,7 +65,8 @@ MAINTAINER singular55
 	conda -V
 	
 	conda install -y -n idp -c franzinc agraph-python
-	conda install -y -n idp -c auto cpe
+	# auto cpe errors because it is python 2.7 only
+	#conda install -y -n idp -c auto cpe
 	conda install -y -n idp -c anaconda keyring
 	conda install -y -n idp -c conda-forge plotly
 	conda install -y -n idp -c conda-forge pylint
