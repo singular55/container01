@@ -60,8 +60,7 @@ MAINTAINER singular55
 	#yum install -y wget 
 	
 	# even with gpgcheck=0, still fails to install?
-	# intel-mpi not available in intel channel...
-	#yum install intelpython3
+	#yum install intelpython3 intel-mpi
 
 
 	#wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -74,7 +73,8 @@ MAINTAINER singular55
 	
 	conda config --add channels intel
 	#conda create -y -n idp intelpython3_full python=3
-	conda create -y -q -n idp intelpython3_core python=3 intel-mpi
+	# intel-mpi not available in intel channel...
+	conda create -y -q -n idp intelpython3_core python=3
 	
 	conda -V
 
