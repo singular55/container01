@@ -84,7 +84,7 @@ MAINTAINER singular55
 	conda install -y -n idp -c conda-forge rdflib
 
 	echo "source /usr/local/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
-	echo "source condainit_rc.sh" >> $SINGULARITY_ENVIRONMENT
+	echo "source /condainit_rc.sh" >> $SINGULARITY_ENVIRONMENT
 	# could also activate
 	#echo "conda activate idp"
 	
