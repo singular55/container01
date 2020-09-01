@@ -84,6 +84,7 @@ MAINTAINER singular55
 	conda install -y -n idp -c conda-forge rdflib
 
 	echo "source /usr/local/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
+	echo "source condainit_rc.sh" >> $SINGULARITY_ENVIRONMENT
 	# could also activate
 	#echo "conda activate idp"
 	
@@ -119,6 +120,7 @@ MAINTAINER singular55
 %files
 	#eclipse.ini eclipse.ini
 	#eclipse-parallel.ini eclipse-parallel.ini
+	condainit_rc.sh /condainit_rc.sh
 
 %runscript
 	#exec /bin/echo "Hi there, container runscript!"
