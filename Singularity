@@ -72,7 +72,7 @@ MAINTAINER singular55
 	
 	conda config --add channels intel
 	#conda create -y -n idp intelpython3_full python=3
-	conda create -y -n idp intelpython3_core python=3
+	conda create -y -q -n idp intelpython3_core python=3
 	
 	conda -V
 
@@ -87,13 +87,13 @@ MAINTAINER singular55
 	#pip install cpe
 	#conda deactivate
 	
-	conda install -y -n idp -c franzinc agraph-python
+	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
 	#conda install -y -n idp -c auto cpe
-	conda install -y -n idp -c anaconda keyring
-	conda install -y -n idp -c conda-forge plotly
-	conda install -y -n idp -c conda-forge pylint
-	conda install -y -n idp -c conda-forge rdflib
+	conda install -y -q -n idp -c anaconda keyring
+	conda install -y -q -n idp -c conda-forge plotly
+	conda install -y -q -n idp -c conda-forge pylint
+	conda install -y -q -n idp -c conda-forge rdflib
 
 	# works for conda defines
 	echo "source /usr/local/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
