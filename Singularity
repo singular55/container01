@@ -16,16 +16,17 @@ MAINTAINER singular55
 	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
 	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
 
-	# https://github.com/hpcng/singularity/issues/5075
-	action="${1##*/}"
-    if [ "$action" = "shell" ]; then
-        if [ "${SINGULARITY_SHELL:-}" = "/bin/bash" ]; then
-            set -- --noprofile --init-file /.sing_bash
-        elif test -z "${SINGULARITY_SHELL:-}"; then
-            export SINGULARITY_SHELL=/bin/bash
-            set -- --noprofile --init-file /.sing_bash
-        fi
-    fi
+
+	## https://github.com/hpcng/singularity/issues/5075
+	#action="${1##*/}"
+    #if [ "$action" = "shell" ]; then
+    #    if [ "${SINGULARITY_SHELL:-}" = "/bin/bash" ]; then
+    #        set -- --noprofile --init-file /.sing_bash
+    #    elif test -z "${SINGULARITY_SHELL:-}"; then
+    #        export SINGULARITY_SHELL=/bin/bash
+    #        set -- --noprofile --init-file /.sing_bash
+    #    fi
+    #fi
 	
 	
 #%setup
@@ -72,7 +73,7 @@ MAINTAINER singular55
 	
 	conda config --add channels intel
 	#conda create -y -n idp intelpython3_full python=3
-	conda create -y -q -n idp intelpython3_core python=3
+	conda create -y -q -n idp intelpython3_core python=3 intel-mpi
 	
 	conda -V
 
@@ -96,13 +97,13 @@ MAINTAINER singular55
 	conda install -y -q -n idp -c conda-forge rdflib
 
 	# works for conda defines
-	echo "source /usr/local/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
+	#echo "source /usr/local/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
 	# doesn't seem to work, still complains about conda init 'shell'
 	#echo "source /condainit_rc.sh" >> $SINGULARITY_ENVIRONMENT
 
 
-	echo "source /usr/local/etc/profile.d/conda.sh" >> /.sing_bash	
-	echo "source /condainit_rc.sh" >> ./sing_bash
+	#echo "source /usr/local/etc/profile.d/conda.sh" >> /.sing_bash	
+	#echo "source /condainit_rc.sh" >> ./sing_bash
 	
 	# could also activate
 	#echo "conda activate idp"
@@ -142,6 +143,10 @@ MAINTAINER singular55
 	#eclipse.ini eclipse.ini
 	#eclipse-parallel.ini eclipse-parallel.ini
 	condainit_rc.sh /condainit_rc.sh
+
+%startscript
+	source /usr/local/etc/profile.d/conda.sh
+	source /condainit_rc.sh
 
 %runscript
 	#exec /bin/echo "Hi there, container runscript!"
