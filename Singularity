@@ -60,7 +60,8 @@ MAINTAINER singular55
 	#yum install -y wget 
 	
 	# even with gpgcheck=0, still fails to install?
-	#yum install intelpython3 intel-mpi
+	# intel-mpi not available in intel channel...
+	#yum install intelpython3
 
 
 	#wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
