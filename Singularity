@@ -16,6 +16,18 @@ MAINTAINER singular55
 	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
 	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
 
+	# https://github.com/hpcng/singularity/issues/5075
+	action="${1##*/}"
+    if [ "$action" = "shell" ]; then
+        if [ "${SINGULARITY_SHELL:-}" = "/bin/bash" ]; then
+            set -- --noprofile --init-file /.sing_bash
+        elif test -z "${SINGULARITY_SHELL:-}"; then
+            export SINGULARITY_SHELL=/bin/bash
+            set -- --noprofile --init-file /.sing_bash
+        fi
+    fi
+	
+	
 #%setup
 	#mkdir -p $SINGULARITY_ROOTFS/lib_override
 	#mkdir -p $SINGULARITY_ROOTFS/bin_override
@@ -83,8 +95,15 @@ MAINTAINER singular55
 	conda install -y -n idp -c conda-forge pylint
 	conda install -y -n idp -c conda-forge rdflib
 
+	# works for conda defines
 	echo "source /usr/local/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
-	echo "source /condainit_rc.sh" >> $SINGULARITY_ENVIRONMENT
+	# doesn't seem to work, still complains about conda init 'shell'
+	#echo "source /condainit_rc.sh" >> $SINGULARITY_ENVIRONMENT
+
+
+	echo "source /usr/local/etc/profile.d/conda.sh" >> /.sing_bash	
+	echo "source /condainit_rc.sh" >> ./sing_bash
+	
 	# could also activate
 	#echo "conda activate idp"
 	
@@ -94,6 +113,8 @@ MAINTAINER singular55
 	## Doesn't work on HPC
 	#conda init bash
 	#source .bashrc
+	
+	# enable env for pip install
 	. /usr/local/etc/profile.d/conda.sh
 	conda activate idp
 	#conda config --set pip_interop_enabled True
