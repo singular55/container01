@@ -13,6 +13,7 @@ MAINTAINER singular55
 	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
 	#WORKDIR=/work
 	WRITEABLE=~/Container_Writeable
+	SITEEXTRA=$WRITEABLE/site-packages-extra
 	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
 	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
 
@@ -57,7 +58,7 @@ MAINTAINER singular55
 	
 	
 	yum repolist
-	#yum install -y wget 
+	yum install -y wget less 
 	
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
@@ -97,6 +98,10 @@ MAINTAINER singular55
 	conda install -y -q -n idp -c conda-forge pylint
 	conda install -y -q -n idp -c conda-forge rdflib
 
+	# cleanup install (from https://hpc.nih.gov/apps/singularity.html )
+	conda clean --index-cache --tarballs --packages --yes
+
+
 	# works for conda defines
 	#echo "source /usr/local/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
 	# doesn't seem to work, still complains about conda init 'shell'
@@ -128,6 +133,14 @@ MAINTAINER singular55
 	#fix some X / DBus issues?
 	#dbus-uuidgen > /var/lib/dbus/machine-id
 
+	# make a hook for extra python module installs
+	ln -s ${SITEEXTRA} /usr/local/envs/idp/lib/python3.7/site-packages/site-packages-extra
+	
+	##############
+	## make some HPC root dirs
+	mkdir -p /app /apps /gpfs
+	
+	
 
 #%setup
 #	echo $SHELL
