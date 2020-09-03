@@ -10,13 +10,14 @@ MAINTAINER singular55
 	#LC_ALL=C.UTF-8
 	PATH=/bin_override:$PATH
 	LIBRARY_PATH=/lib_override:$LIBRARY_PATH
-	LD_LIBRARY_PATH=/lib_override:/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH
-	FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH
+	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
+	#LD_LIBRARY_PATH=/lib_override:/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH
+	#FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH
 	#WORKDIR=/work
 	WRITEABLE=~/Container_Writeable
 	#SITEEXTRA=$WRITEABLE/site-packages-extra
 	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
-	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE FI_PROVIDER_PATH
+	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
 
 
 	## https://github.com/hpcng/singularity/issues/5075
@@ -59,7 +60,7 @@ MAINTAINER singular55
 	
 	
 	yum repolist
-	yum install -y wget less which
+	yum install -y wget less which libfabric
 	
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
@@ -77,6 +78,7 @@ MAINTAINER singular55
 	# full install fails, seems to die when we add conda franz package
 	#conda create -y -q -n idp intelpython3_full python=3
 	# intel-mpi not available in intel channel...
+	# mpi4py intel build has some issues with libfabric...
 	conda create -y -q -n idp intelpython3_core python=3 mpi4py
 	
 	conda -V
@@ -108,7 +110,9 @@ MAINTAINER singular55
 	##
 	
 	
-	
+	# avoid intel for mpi
+	conda install -c anaconda mpi4py --override-channels
+
 	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
 	#conda install -y -n idp -c auto cpe
