@@ -10,12 +10,13 @@ MAINTAINER singular55
 	#LC_ALL=C.UTF-8
 	PATH=/bin_override:$PATH
 	LIBRARY_PATH=/lib_override:$LIBRARY_PATH
-	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
+	LD_LIBRARY_PATH=/lib_override:/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH
+	FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH
 	#WORKDIR=/work
 	WRITEABLE=~/Container_Writeable
 	#SITEEXTRA=$WRITEABLE/site-packages-extra
 	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
-	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
+	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE FI_PROVIDER_PATH
 
 
 	## https://github.com/hpcng/singularity/issues/5075
@@ -100,8 +101,10 @@ MAINTAINER singular55
 	#grab the one package we need from pip
 	#workaround issue in Intel MPI
 	# https://community.intel.com/t5/Intel-Distribution-for-Python/mpi4py-ImportError-libfabric-so-1/td-p/1139856
-	LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  pip install cpe
-	LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  conda deactivate
+	#LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  pip install cpe
+	pip install cpe
+	#LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  conda deactivate
+	conda deactivate
 	##
 	
 	
