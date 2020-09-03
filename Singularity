@@ -157,7 +157,9 @@ MAINTAINER singular55
 	#eclipse.ini eclipse.ini
 	#eclipse-parallel.ini eclipse-parallel.ini
 	condainit_rc.sh /condainit_rc.sh
-	sitecustomize.py /usr/local/envs/idp/lib/python3.7/site-packages/sitecustomize.py
+	# not used?
+	#sitecustomize.py /usr/local/envs/idp/lib/python3.7/site-packages/sitecustomize.py
+	sitecustomize.py /usr/local/envs/idp/lib/python3.7/sitecustomize.py
 
 %startscript
 	source /usr/local/etc/profile.d/conda.sh
