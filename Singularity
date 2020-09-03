@@ -58,7 +58,7 @@ MAINTAINER singular55
 	
 	
 	yum repolist
-	yum install -y wget less 
+	yum install -y wget less which
 	
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
@@ -90,6 +90,19 @@ MAINTAINER singular55
 	##grab the one package we need from pip
 	#pip install cpe
 	#conda deactivate
+	
+	
+	## try pip before conda packages, add which with yum
+	# enable env for pip install
+	. /usr/local/etc/profile.d/conda.sh
+	conda activate idp
+	#conda config --set pip_interop_enabled True
+	#grab the one package we need from pip
+	pip install cpe
+	conda deactivate
+	##
+	
+	
 	
 	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
@@ -123,13 +136,15 @@ MAINTAINER singular55
 	#conda init bash
 	#source .bashrc
 	
-	# enable env for pip install
-	. /usr/local/etc/profile.d/conda.sh
-	conda activate idp
-	#conda config --set pip_interop_enabled True
-	#grab the one package we need from pip
-	pip install cpe
-	conda deactivate
+	
+	### disabled, trying before conda installs
+	## enable env for pip install
+	#. /usr/local/etc/profile.d/conda.sh
+	#conda activate idp
+	##conda config --set pip_interop_enabled True
+	##grab the one package we need from pip
+	#pip install cpe
+	#conda deactivate
 	
 	
 	#fix some X / DBus issues?
