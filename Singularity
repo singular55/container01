@@ -13,7 +13,7 @@ MAINTAINER singular55
 	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
 	#WORKDIR=/work
 	WRITEABLE=~/Container_Writeable
-	SITEEXTRA=$WRITEABLE/site-packages-extra
+	#SITEEXTRA=$WRITEABLE/site-packages-extra
 	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
 	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WRITEABLE
 
@@ -134,7 +134,7 @@ MAINTAINER singular55
 	#dbus-uuidgen > /var/lib/dbus/machine-id
 
 	# make a hook for extra python module installs
-	ln -s ${SITEEXTRA} /usr/local/envs/idp/lib/python3.7/site-packages/site-packages-extra
+	#ln -s ${SITEEXTRA} /usr/local/envs/idp/lib/python3.7/site-packages/site-packages-extra
 	
 	##############
 	## make some HPC root dirs
@@ -169,10 +169,10 @@ MAINTAINER singular55
 	#exec /bin/echo "Hi there, container runscript!"
 	#exec /usr/bin/meld
 
-	mkdir -p ${WRITEABLE}
-	touch ${WRITEABLE}/HiThere
+	#mkdir -p ${WRITEABLE}
+	#touch ${WRITEABLE}/HiThere
 
-	/bin/echo "Config files should go in ${WRITEABLE}."
+	#/bin/echo "Config files should go in ${WRITEABLE}."
 
 
 #%apprun meld
