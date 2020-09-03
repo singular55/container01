@@ -73,9 +73,9 @@ MAINTAINER singular55
 	conda update -y -q conda
 	
 	conda config --add channels intel
-	#conda create -y -n idp intelpython3_full python=3
+	conda create -y -q -n idp intelpython3_full python=3
 	# intel-mpi not available in intel channel...
-	conda create -y -q -n idp intelpython3_core python=3
+	#conda create -y -q -n idp intelpython3_core python=3
 	
 	conda -V
 
@@ -93,10 +93,9 @@ MAINTAINER singular55
 	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
 	#conda install -y -n idp -c auto cpe
-	conda install -y -q -n idp -c anaconda keyring
-	conda install -y -q -n idp -c conda-forge plotly
-	conda install -y -q -n idp -c conda-forge pylint
-	conda install -y -q -n idp -c conda-forge rdflib
+	conda install -y -q -n idp -c anaconda keyring more-itertools
+	conda install -y -q -n idp -c conda-forge plotly pylint rdflib argparse tqdm
+	conda install -y -q -n idp -c travis functools 
 
 	# cleanup install (from https://hpc.nih.gov/apps/singularity.html )
 	conda clean --index-cache --tarballs --packages --yes
