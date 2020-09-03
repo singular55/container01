@@ -101,7 +101,7 @@ MAINTAINER singular55
 	#workaround issue in Intel MPI
 	# https://community.intel.com/t5/Intel-Distribution-for-Python/mpi4py-ImportError-libfabric-so-1/td-p/1139856
 	LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  pip install cpe
-	conda deactivate
+	LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  conda deactivate
 	##
 	
 	
