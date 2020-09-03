@@ -95,8 +95,10 @@ MAINTAINER singular55
 	# auto cpe errors because it is python 2.7 only
 	#conda install -y -n idp -c auto cpe
 	conda install -y -q -n idp -c anaconda keyring more-itertools
-	conda install -y -q -n idp -c conda-forge plotly pylint rdflib argparse tqdm
-	conda install -y -q -n idp -c travis functools 
+	# argparse moved to pip, py2 only
+	conda install -y -q -n idp -c conda-forge plotly pylint rdflib tqdm
+	# functools builtin in py3?
+	#conda install -y -q -n idp -c travis functools 
 
 	# cleanup install (from https://hpc.nih.gov/apps/singularity.html )
 	conda clean --index-cache --tarballs --packages --yes
@@ -126,7 +128,7 @@ MAINTAINER singular55
 	conda activate idp
 	#conda config --set pip_interop_enabled True
 	#grab the one package we need from pip
-	pip install cpe
+	pip install cpe argparse
 	conda deactivate
 	
 	
