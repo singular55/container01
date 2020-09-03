@@ -73,9 +73,10 @@ MAINTAINER singular55
 	conda update -y -q conda
 	
 	conda config --add channels intel
-	conda create -y -q -n idp intelpython3_full python=3
+	# full install fails, seems to die when we add conda franz package
+	#conda create -y -q -n idp intelpython3_full python=3
 	# intel-mpi not available in intel channel...
-	#conda create -y -q -n idp intelpython3_core python=3
+	conda create -y -q -n idp intelpython3_core python=3 mpi4py
 	
 	conda -V
 
