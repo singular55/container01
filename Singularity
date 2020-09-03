@@ -79,6 +79,7 @@ MAINTAINER singular55
 	#conda create -y -q -n idp intelpython3_full python=3
 	# intel-mpi not available in intel channel...
 	# mpi4py intel build has some issues with libfabric...
+	# but yum install libfabric seems to fix them
 	conda create -y -q -n idp intelpython3_core python=3 mpi4py
 	
 	conda -V
@@ -110,8 +111,8 @@ MAINTAINER singular55
 	##
 	
 	
-	# avoid intel for mpi
-	conda install -c anaconda mpi4py --override-channels
+	# avoid intel for mpi (recipe to override default intel channel for a package)
+	#conda install -c anaconda mpi4py --override-channels
 
 	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
