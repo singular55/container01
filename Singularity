@@ -115,7 +115,7 @@ MAINTAINER singular55
 	
 	
 	# avoid intel for mpi (recipe to override default intel channel for a package)
-	conda install -c anaconda mpi4py --override-channels
+	conda install -y -q -n idp -c anaconda mpi4py --override-channels
 
 	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
