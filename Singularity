@@ -62,7 +62,7 @@ MAINTAINER singular55
 	yum repolist
 	# removed libfabric, only needed for intel mpi / intel mpi4py
 	#yum install -y wget less which libfabric
-	yum install -y wget less which
+	yum install -y wget less which ssh
 	
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
