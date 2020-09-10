@@ -1,5 +1,5 @@
 Bootstrap:docker
-From:conda/miniconda3-centos7
+From:centos:7
 
 %labels
 MAINTAINER singular55
@@ -57,8 +57,21 @@ MAINTAINER singular55
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
 	
-	# get python 3.8 and 3.7, then pip installs to 3.7?
+	# get python 3.8 and 3.7, then pip installs to 3.7?  (anaconda docker issue?)
 	#yum update -y
+	
+	rpm --import https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc
+	
+	#Add the Anaconda repository
+cat <<EOF > /etc/yum.repos.d/conda.repo
+[conda]
+name=Conda
+baseurl=https://repo.anaconda.com/pkgs/misc/rpmrepo/conda
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc
+EOF
+	
 	
 	
 	yum repolist
@@ -68,7 +81,7 @@ MAINTAINER singular55
 	# no python3-mpi4py?
 	
 	#yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
-	yum install -y wget less which openssh-clients  mpi4py-mpich
+	yum install -y wget less which openssh-clients  mpi4py-mpich conda
 	
 	#pip install --upgrade pip
 	# move mpi4py to yum, but also has library name...
