@@ -67,7 +67,8 @@ MAINTAINER singular55
 	# need epel for pip
 	# no python3-mpi4py?
 	
-	yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
+	#yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
+	yum install -y wget less which openssh-clients  mpi4py-mpich
 	
 	#pip install --upgrade pip
 	# move mpi4py to yum, but also has library name...
