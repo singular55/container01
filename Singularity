@@ -67,7 +67,7 @@ MAINTAINER singular55
 	
 	yum install -y wget less which openssh-clients python3 python3-pip mpich openmpi
 	
-	pip install --upgrade pip
+	#pip install --upgrade pip
 	pip install cpe mpi4py agraph-python keyring more-itertools plotly pylint rdflib tqdm functools
 	
 	
