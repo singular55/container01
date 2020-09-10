@@ -65,7 +65,7 @@ MAINTAINER singular55
 	# need epel for pip
 	# no python3-mpi4py?
 	
-	yum install -y wget less which openssh-clients python3 python-pip
+	yum install -y wget less which openssh-clients python3 python-pip mpich openmpi
 	
 	pip install --upgrade pip
 	pip install cpe mpi4py agraph-python keyring more-itertools plotly pylint rdflib tqdm functools
