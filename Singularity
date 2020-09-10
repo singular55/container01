@@ -56,13 +56,17 @@ MAINTAINER singular55
 	
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
-	
+	yum update -y
 	
 	
 	yum repolist
 	# removed libfabric, only needed for intel mpi / intel mpi4py
 	#yum install -y wget less which libfabric
-	yum install -y wget less which openssh-clients
+	# need epel for pip
+	
+	yum install -y wget less which openssh-clients python3 python3-mpi4py python-pip
+	pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm functools
+	
 	
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
@@ -128,6 +132,8 @@ MAINTAINER singular55
 
 	# cleanup install (from https://hpc.nih.gov/apps/singularity.html )
 	conda clean --index-cache --tarballs --packages --yes
+	# also
+	# conda clean --all
 
 
 	# works for conda defines
