@@ -63,9 +63,12 @@ MAINTAINER singular55
 	# removed libfabric, only needed for intel mpi / intel mpi4py
 	#yum install -y wget less which libfabric
 	# need epel for pip
+	# no python3-mpi4py?
 	
-	yum install -y wget less which openssh-clients python3 python3-mpi4py python-pip
-	pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm functools
+	yum install -y wget less which openssh-clients python3 python-pip
+	
+	pip install --upgrade pip
+	pip install cpe mpi4py agraph-python keyring more-itertools plotly pylint rdflib tqdm functools
 	
 	
 	# even with gpgcheck=0, still fails to install?
