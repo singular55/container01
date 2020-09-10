@@ -56,7 +56,9 @@ MAINTAINER singular55
 	
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
-	yum update -y
+	
+	# get python 3.8 and 3.7, then pip installs to 3.7?
+	#yum update -y
 	
 	
 	yum repolist
