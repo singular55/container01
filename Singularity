@@ -56,7 +56,7 @@ MAINTAINER singular55
 	
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
-	#yum update -y
+	yum update -y
 	
 	
 	yum repolist
