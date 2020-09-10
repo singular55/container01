@@ -56,7 +56,7 @@ MAINTAINER singular55
 	
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
-	yum update -y
+	#yum update -y
 	
 	
 	yum repolist
@@ -65,7 +65,7 @@ MAINTAINER singular55
 	# need epel for pip
 	# no python3-mpi4py?
 	
-	yum install -y wget less which openssh-clients python3 python-pip mpich openmpi
+	yum install -y wget less which openssh-clients python3 python3-pip mpich openmpi
 	
 	pip install --upgrade pip
 	pip install cpe mpi4py agraph-python keyring more-itertools plotly pylint rdflib tqdm functools
