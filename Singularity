@@ -65,10 +65,11 @@ MAINTAINER singular55
 	# need epel for pip
 	# no python3-mpi4py?
 	
-	yum install -y wget less which openssh-clients python3 python3-pip mpich openmpi
+	yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
 	
 	#pip install --upgrade pip
-	pip install cpe mpi4py agraph-python keyring more-itertools plotly pylint rdflib tqdm
+	# move mpi4py to yum, but also has library name...
+	pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm
 	
 	
 	# even with gpgcheck=0, still fails to install?
