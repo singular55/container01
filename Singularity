@@ -99,7 +99,7 @@ EOF
 	#sh bashrc
 	
 	# no prompt, no progress bars (-q)
-	conda update -y -q conda
+##	conda update -y -q conda
 	
 ##	conda config --add channels intel
 	# full install fails, seems to die when we add conda franz package
@@ -110,9 +110,9 @@ EOF
 	# remove intel mpi4py for now
 ##	conda create -y -q -n idp intelpython3_core python=3
 	
-	conda -V
+##	conda -V
 
-	conda config --set pip_interop_enabled True
+##	conda config --set pip_interop_enabled True
 	
 	## setup conda / pip interop
 	#echo $SHELL
