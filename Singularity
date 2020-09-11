@@ -86,7 +86,7 @@ EOF
 	#pip install --upgrade pip
 	# move mpi4py to yum, but also has library name...
 	# move to included pip
-	python -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm
+##	python -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm
 	
 	
 	# even with gpgcheck=0, still fails to install?
@@ -101,14 +101,14 @@ EOF
 	# no prompt, no progress bars (-q)
 	conda update -y -q conda
 	
-	conda config --add channels intel
+##	conda config --add channels intel
 	# full install fails, seems to die when we add conda franz package
 	#conda create -y -q -n idp intelpython3_full python=3
 	# intel-mpi not available in intel channel...
 	# mpi4py intel build has some issues with libfabric...
 	# but yum install libfabric seems to fix them
 	# remove intel mpi4py for now
-	conda create -y -q -n idp intelpython3_core python=3
+##	conda create -y -q -n idp intelpython3_core python=3
 	
 	conda -V
 
@@ -126,28 +126,28 @@ EOF
 	
 	## try pip before conda packages, add which with yum
 	# enable env for pip install
-	. /usr/local/etc/profile.d/conda.sh
-	conda activate idp
+##	. /usr/local/etc/profile.d/conda.sh
+##	conda activate idp
 	#conda config --set pip_interop_enabled True
 	#grab the one package we need from pip
 	#workaround issue in Intel MPI
 	# https://community.intel.com/t5/Intel-Distribution-for-Python/mpi4py-ImportError-libfabric-so-1/td-p/1139856
 	#LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  pip install cpe
-	python -m pip install cpe
+##	python -m pip install cpe
 	#LD_LIBRARY_PATH=/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH  FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH  conda deactivate
-	conda deactivate
+##	conda deactivate
 	##
 	
 	
 	# avoid intel for mpi (recipe to override default intel channel for a package)
-	conda install -y -n idp -c anaconda mpi4py --override-channels
+##	conda install -y -n idp -c anaconda mpi4py --override-channels
 
-	conda install -y -q -n idp -c franzinc agraph-python
+##	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
 	#conda install -y -n idp -c auto cpe
-	conda install -y -q -n idp -c anaconda keyring more-itertools
+##	conda install -y -q -n idp -c anaconda keyring more-itertools
 	# argparse removed, py2 only, and builtin in py3_2
-	conda install -y -q -n idp -c conda-forge plotly pylint rdflib tqdm
+##	conda install -y -q -n idp -c conda-forge plotly pylint rdflib tqdm
 	# functools builtin in py3?
 	#conda install -y -q -n idp -c travis functools 
 
