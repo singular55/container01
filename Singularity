@@ -8,7 +8,7 @@ MAINTAINER singular55
 	LANG=C.UTF-8
 	# couldn't change LC_ALL on target
 	#LC_ALL=C.UTF-8
-	PATH=/bin_override:$PATH
+	PATH=/bin_override:$PATH:/lib64/mpich/bin
 	LIBRARY_PATH=/lib_override:$LIBRARY_PATH
 	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
 	#LD_LIBRARY_PATH=/lib_override:/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH
@@ -88,7 +88,7 @@ EOF
 	#pip install --upgrade pip
 	# move mpi4py to yum, but also has library name...
 	# move to included pip
-	python3 -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm mpi4py
+	env MPICC=/lib64/mpich/bin/mpicc python3 -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm mpi4py
 	
 	
 	# even with gpgcheck=0, still fails to install?
