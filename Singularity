@@ -152,7 +152,7 @@ EOF
 	#conda install -y -q -n idp -c travis functools 
 
 	# cleanup install (from https://hpc.nih.gov/apps/singularity.html )
-	conda clean --index-cache --tarballs --packages --yes
+##	conda clean --index-cache --tarballs --packages --yes
 	# also
 	# conda clean --all
 
