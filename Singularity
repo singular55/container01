@@ -82,7 +82,7 @@ EOF
 	
 	#yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
 	# mpi4py-mpich installs in python 2.7
-	yum install -y wget less which openssh-clients python3 mpich conda python3-devel
+	yum install -y wget less which openssh-clients python3 mpich mpich-devel conda python3-devel
 	yum groupinstall -y 'development tools'
 	
 	#pip install --upgrade pip
