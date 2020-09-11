@@ -81,12 +81,13 @@ EOF
 	# no python3-mpi4py?
 	
 	#yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
-	yum install -y wget less which openssh-clients python3 mpich mpi4py-mpich conda
+	# mpi4py-mpich installs in python 2.7
+	yum install -y wget less which openssh-clients python3 mpich conda
 	
 	#pip install --upgrade pip
 	# move mpi4py to yum, but also has library name...
 	# move to included pip
-##	python -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm
+	python3 -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm mpi4py
 	
 	
 	# even with gpgcheck=0, still fails to install?
