@@ -8,9 +8,9 @@ MAINTAINER singular55
 	LANG=C.UTF-8
 	# couldn't change LC_ALL on target
 	#LC_ALL=C.UTF-8
-	PATH=/bin_override:$PATH
-	LIBRARY_PATH=/lib_override:$LIBRARY_PATH
-	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
+	PATH=/usr/lib64/openmpi/bin:/bin_override:$PATH
+	LIBRARY_PATH=/usr/lib64/openmpi/lib:/lib_override:$LIBRARY_PATH
+	LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:/lib_override:$LD_LIBRARY_PATH
 	#LD_LIBRARY_PATH=/lib_override:/usr/local/envs/idp/lib/libfabric:$LD_LIBRARY_PATH
 	#FI_PROVIDER_PATH=/usr/local/envs/idp/lib/libfabric/prov:$FI_PROVIDER_PATH
 	#WORKDIR=/work
@@ -82,14 +82,18 @@ EOF
 	
 	#yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
 	# mpi4py-mpich installs in python 2.7
-	yum install -y wget less which openssh-clients python3 mpich mpich-devel mpich-autoload conda python3-devel
+	# move to openmpi
+	# removed mpi4py-openmpi environment-modules
+	yum install -y wget less which openssh-clients  python3 openmpi-devel conda python3-devel
 	yum groupinstall -y 'development tools'
 	
 	#pip install --upgrade pip
 	# move mpi4py to yum, but also has library name...
 	# move to included pip
-	python3 -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm mpi4py
-	
+	#export CC=/usr/lib64/openmpi/bin/mpicc
+	python3 -m pip install cpe agraph-python keyring more-itertools plotly pylint rdflib tqdm
+	env MPICC=/usr/lib64/openmpi/bin/mpicc python3 -m pip install mpi4py
+	#unset CC
 	
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
