@@ -83,9 +83,18 @@ EOF
 	#yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
 	# mpi4py-mpich installs in python 2.7
 	# move to openmpi
-	# removed mpi4py-openmpi environment-modules
-	yum install -y wget less which openssh-clients  python3 openmpi-devel conda python3-devel
+	# removed mpi4py-openmpi environment-modules openmpi-devel
+	yum install -y wget less which openssh-clients  python3  conda python3-devel git
 	yum groupinstall -y 'development tools'
+	
+	mkdir -p git
+	cd git
+	git clone https://github.com/open-mpi/ompi.git
+	cd ompi
+	git checkout v4.0.5
+	./autogen.pl
+	./configure --prefix=/usr/lib64/openmpi --disable-dlopen
+	make -j 4 install
 	
 	#pip install --upgrade pip
 	# move mpi4py to yum, but also has library name...
