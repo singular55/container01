@@ -37,7 +37,10 @@ MAINTAINER singular55
 	#mkdir -p $SINGULARITY_ROOTFS/bin_override
 	#mkdir -p $SINGULARITY_ROOTFS/work
 
-
+	# under miniconda docker image
+	# CONDA_ENVS=/usr/local/envs/
+	# under centos 7 conda yum install	
+	CONDA_ENVS=/opt/conda/envs/
 
 
 	## mysql - full install
@@ -75,8 +78,10 @@ EOF
 	yum repolist
 	# removed libfabric, only needed for intel mpi / intel mpi4py
 	#yum install -y wget less which libfabric
-	yum install -y wget less which conda
-	
+	yum install -y wget less which conda openssh-clients rsh
+
+	. /opt/conda/etc/profile.d/conda.sh
+
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
 
@@ -84,7 +89,7 @@ EOF
 	#wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 	#sh Miniconda3-latest-Linux-x86_64.sh
 
-	#sh bashrc
+	#sh .bashrc
 	
 	# no prompt, no progress bars (-q)
 	conda update -y -q conda
@@ -114,7 +119,8 @@ EOF
 	
 	## try pip before conda packages, add which with yum
 	# enable env for pip install
-	. /usr/local/etc/profile.d/conda.sh
+	# do earlier	
+	#. /usr/local/etc/profile.d/conda.sh
 	conda activate idp
 	#conda config --set pip_interop_enabled True
 	#grab the one package we need from pip
@@ -203,7 +209,8 @@ EOF
 	condainit_rc.sh /condainit_rc.sh
 	# not used?
 	#sitecustomize.py /usr/local/envs/idp/lib/python3.7/site-packages/sitecustomize.py
-	sitecustomize.py /usr/local/envs/idp/lib/python3.7/sitecustomize.py
+	sitecustomize.py $CONDA_ENVS/idp/lib/python3.7/sitecustomize.py
+	mpi4py_test.py
 
 %startscript
 	source /usr/local/etc/profile.d/conda.sh
