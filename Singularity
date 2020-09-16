@@ -83,17 +83,33 @@ EOF
 	#yum install -y wget less which openssh-clients python3 python3-pip mpich mpi4py-mpich
 	# mpi4py-mpich installs in python 2.7
 	# move to openmpi
-	# removed mpi4py-openmpi environment-modules openmpi-devel
-	yum install -y wget less which openssh-clients  python3  conda python3-devel git
+	# removed mpi4py-openmpi environment-modules openmpi-devel pmix pmix-devel
+	yum install -y wget less which openssh-clients  python3  conda python3-devel git \
+		hwloc-devel libX11-devel libXt-devel libedit-devel libical-devel \
+		ncurses-devel perl postgresql-devel postgresql-contrib python3-devel tcl-devel \
+		tk-devel swig expat-devel openssl-devel libXext libXft
 	yum groupinstall -y 'development tools'
 	
+	##openpbs
 	mkdir -p git
 	cd git
+	git clone https://github.com/openpbs/openpbs
+	cd openpbs
+	git checkout v20.0.0
+	./autogen.sh
+	PYTHON="/usr/bin/python3" ./configure --prefix=/usr/lib64/pbs --enable-alps
+	make -j 4
+	make install
+
+	## openmpi
 	git clone https://github.com/open-mpi/ompi.git
 	cd ompi
-	git checkout v4.0.5
+	# 4.0.5 has no internal PMIx?  Move back to 4.0.1
+	git checkout v4.0.1
 	./autogen.pl
-	./configure --prefix=/usr/lib64/openmpi --disable-dlopen
+	# --with-pmi=/usr/lib6
+	# needs cray parts to compile? --with-alps
+	./configure --prefix=/usr/lib64/openmpi --disable-dlopen  --with-pmix --with-alps
 	make -j 4 install
 	
 	#pip install --upgrade pip
