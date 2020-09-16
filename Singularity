@@ -1,5 +1,5 @@
 Bootstrap:docker
-From:conda/miniconda3-centos7
+From:centos:7
 
 %labels
 MAINTAINER singular55
@@ -57,12 +57,25 @@ MAINTAINER singular55
 	#yum --enablerepo=extras install -y epel-release
 	yum -y install epel-release	
 	
+
+	rpm --import https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc
+	
+	#Add the Anaconda repository
+cat <<EOF > /etc/yum.repos.d/conda.repo
+[conda]
+name=Conda
+baseurl=https://repo.anaconda.com/pkgs/misc/rpmrepo/conda
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc
+EOF
+
 	
 	
 	yum repolist
 	# removed libfabric, only needed for intel mpi / intel mpi4py
 	#yum install -y wget less which libfabric
-	yum install -y wget less which
+	yum install -y wget less which conda
 	
 	# even with gpgcheck=0, still fails to install?
 	#yum install intelpython3 intel-mpi
