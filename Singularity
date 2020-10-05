@@ -142,7 +142,7 @@ EOF
 	#conda install -y -n idp -c auto cpe
 	conda install -y -q -n idp -c anaconda keyring more-itertools
 	# argparse removed, py2 only, and builtin in py3_2
-	conda install -y -q -n idp -c conda-forge plotly pylint rdflib tqdm
+	conda install -y -q -n idp -c conda-forge plotly pylint rdflib tqdm importlib_resources
 	# functools builtin in py3?
 	#conda install -y -q -n idp -c travis functools 
 
