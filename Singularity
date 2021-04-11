@@ -140,9 +140,11 @@ EOF
 	conda install -y -q -n idp -c franzinc agraph-python
 	# auto cpe errors because it is python 2.7 only
 	#conda install -y -n idp -c auto cpe
-	conda install -y -q -n idp -c anaconda keyring more-itertools
+	conda install -y -q -n idp -c anaconda keyring more-itertools beautifulsoup4 colorama jupyter keras lxml markdown pandas setuptools tensorflow wheel whoosh
 	# argparse removed, py2 only, and builtin in py3_2
-	conda install -y -q -n idp -c conda-forge plotly pylint rdflib tqdm importlib_resources
+	conda install -y -q -n idp -c conda-forge plotly pylint rdflib tqdm importlib_resources matplotlib numpy nltk pytablewriter spacy
+	#conda install -y -q -n idp -c contango sklearn
+	conda install -y -q -n idp -c pryml sklearn
 	# functools builtin in py3?
 	#conda install -y -q -n idp -c travis functools 
 
