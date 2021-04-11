@@ -78,7 +78,7 @@ EOF
 	yum repolist
 	# removed libfabric, only needed for intel mpi / intel mpi4py
 	#yum install -y wget less which libfabric
-	yum install -y wget less which conda openssh-clients rsh
+	yum install -y wget less which conda openssh-clients rsh libfabric
 
 	. /opt/conda/etc/profile.d/conda.sh
 
