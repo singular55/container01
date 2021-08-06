@@ -9,13 +9,10 @@ MAINTAINER singular55
 
 %environment
 	LANG=C.UTF-8
-	# couldn't change LC_ALL on target
-	#LC_ALL=C.UTF-8
 	PATH=/bin_override:$PATH
 	LIBRARY_PATH=/lib_override:$LIBRARY_PATH
 	LD_LIBRARY_PATH=/lib_override:$LD_LIBRARY_PATH
 	WORKDIR=/work
-	#export LC_ALL LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
 	export LANG PATH LIBRARY_PATH LD_LIBRARY_PATH WORKDIR
 
 %setup
@@ -23,46 +20,35 @@ MAINTAINER singular55
 	mkdir -p $SINGULARITY_ROOTFS/bin_override
 	mkdir -p $SINGULARITY_ROOTFS/work
 
-	wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
-	tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
-	rm /tmp/eclipse.tar.gz
+	#wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
+	#tar -xf /tmp/eclipse.tar.gz -C $SINGULARITY_ROOTFS/bin_override
+	#rm /tmp/eclipse.tar.gz
 
-	cp eclipse.ini $SINGULARITY_ROOTFS/bin_override/eclipse/
+	#cp eclipse.ini $SINGULARITY_ROOTFS/bin_override/eclipse/
 
 %post
-	#yum --enablerepo=extras install -y epel-release
-	yum -y install epel-release	
-	yum repolist
-	#yum update --fix-missing
-	yum install -y git meld wget
-	#yum clean
+	#yum -y install epel-release	
+	#yum repolist
+	#yum install -y git meld wget
+
+	#SUSEConnect -p PackageHub/15.3/x86_64 
+
+	# meld kdiff3 firefox gedit SUSE-SLE-Module-Development-Tools
+	zypper --non-interactive install git wget SUSEConnect
 
 	#fix some X / DBus issues?
-	dbus-uuidgen > /var/lib/dbus/machine-id
+	#dbus-uuidgen > /var/lib/dbus/machine-id
 
 	#eclipse jee
 
-	##wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-jee-2019-09-R-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz
 	
-	#tar -xf /tmp/eclipse.tar.gz -C /opt
-	#tar -xf /tmp/eclipse.tar.gz -C ${SINGULARITY_ROOTFS}
-	# ~ is /root for singularity hub
-	
-	##tar -xf /tmp/eclipse.tar.gz -C ~
-	##rm /tmp/eclipse.tar.gz
-
-	#moved from /opt/eclipse
-	
-	##cp eclipse.ini ~/eclipse/
 
 
 %files
-	#eclipse.ini /opt/eclipse/
 	eclipse.ini eclipse.ini
 
 %runscript
 	exec /bin/echo "Hi there, container runscript!"
-	#exec /usr/bin/meld
 
 %apprun meld
 	exec meld "$@"
