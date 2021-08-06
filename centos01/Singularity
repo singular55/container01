@@ -1,5 +1,8 @@
 Bootstrap:docker
-From:centos:7.5.1804
+#From:centos:7.5.1804
+#MirrorURL: registry.suse.com/suse/sle15:latest
+From: registry.suse.com/suse/sle15:latest
+#docker pull registry.suse.com/suse/sle15:latest
 
 %labels
 MAINTAINER singular55
