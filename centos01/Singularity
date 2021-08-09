@@ -1,7 +1,11 @@
 Bootstrap:docker
 #From:centos:7.5.1804
 #MirrorURL: registry.suse.com/suse/sle15:latest
-From: registry.suse.com/suse/sle15:latest
+#https://build.opensuse.org/package/show/opensuse:leap:15.2:Images/opensuse-leap-image
+# installs, but bad language fonts on GUI?  registry.opensuse.org/opensuse/leap:latest
+From: registry.opensuse.org/opensuse/leap:15.3
+#From: registry.opensuse.org/opensuse/tumbleweed:latest
+#docker pull registry.opensuse.org/opensuse/leap:latest
 #docker pull registry.suse.com/suse/sle15:latest
 
 %labels
@@ -33,8 +37,18 @@ MAINTAINER singular55
 
 	#SUSEConnect -p PackageHub/15.3/x86_64 
 
+	#zypper addrepo http://download.opensuse.org/repositories/home:/namtrac:/subpixel/openSUSE_Factory.repo
+	#zypper install libfreetype6 libfreetype6-32bit
+
 	# meld kdiff3 firefox gedit SUSE-SLE-Module-Development-Tools
-	zypper --non-interactive install git wget SUSEConnect
+	zypper --non-interactive install git wget firefox meld gedit kdiff3 gnome-desktop google-croscore-fonts iso-codes breeze5-icons
+
+# kdiff3 complains for 'Icon theme breeeze not found', add package breeze5-icons to try and fix
+# see some errors for /run/user/xxxx not found on HPC
+# iso-codes  (error thrown by gedit on HPC, try to fix with this package)
+# works for getting firefox and meld fonts to work!  (so does google-croscore-fonts)
+#fetchmsttfonts 
+# microsoft-consolas-fonts
 
 	#fix some X / DBus issues?
 	#dbus-uuidgen > /var/lib/dbus/machine-id
@@ -55,4 +69,15 @@ MAINTAINER singular55
 
 %apprun eclipse
 	exec /bin_override/eclipse/eclipse "$@"
+
+%apprun firefox
+	exec firefox "$@"
+
+%apprun kdiff3
+	exec kdiff3 "$@"
+
+%apprun gedit
+	exec gedit "$@"
+
+
 
